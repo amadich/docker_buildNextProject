@@ -2,10 +2,16 @@ version: '3.3'
 
 services:
   app:
-    container_name: my_nodenext14_app
+    container_name: my_node_app
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    volumes:
+      - ./app_data:/app/data
+      - ./node_modules:/app/node_modules  # Mount node_modules directory as a bind mount
     command: npm run dev
+
+volumes:
+  app_data:
